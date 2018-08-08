@@ -1,3 +1,7 @@
 #!/usr/bin/env ruby
 
+
+#environment file
 require_relative '../lib/sgrind'
+
+#call to CLI

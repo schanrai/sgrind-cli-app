@@ -1,0 +1,8 @@
+class Sgrind::Scraper
+
+
+
+
+
+
+end
