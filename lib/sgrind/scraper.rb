@@ -1,6 +1,6 @@
 class Scraper
 
-  def scrape_index_page
+  def self.scrape_index_page
     doc = Nokogiri::HTML(open("https://www.startupgrind.com/events/"))
     scraped_index = []
     doc.css("#upcoming-events .panel-picture-content").each do |events|
