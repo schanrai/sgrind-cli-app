@@ -1,4 +1,4 @@
-class Sgrind::Cli
+class Cli
 
 
 

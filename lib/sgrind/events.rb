@@ -1,4 +1,4 @@
-class Sgrind::Events
+class Events
 
 
 
