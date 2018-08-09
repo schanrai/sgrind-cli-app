@@ -17,7 +17,7 @@ class Scraper
   end
 
 
-  def scrape_details_page(url)
+  def self.scrape_details_page(url)
     #url_1 ="https://www.startupgrind.com/events/details/startup-grind-san-francisco-presents-ryan-popple-proterra#/"
     scraped_details = {}
     doc = Nokogiri::HTML(open(url))

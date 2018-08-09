@@ -11,12 +11,19 @@ class Event
     #self
   end
 
-  def self.make_events(index_array)
-      self.clear
-      index_array.each do |event_hash|
-      Event.new(event_hash)
-    end
+  def self.make_events(scraped_index)
+     #self.clear
+     scraped_index.each do |event_hash|
+       Event.new(event_hash)
+     end
   end
+
+   def add_details(scraped_details)
+     scraped_details.each do |attr, value|
+       self.send("#{attr}=", value)
+     end
+    self
+   end
 
 
   def self.all
