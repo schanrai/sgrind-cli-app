@@ -18,6 +18,7 @@ class Event
      end
   end
 
+
    def add_details(scraped_details)
      scraped_details.each do |attr, value|
        self.send("#{attr}=", value)
@@ -25,12 +26,18 @@ class Event
     self
    end
 
+
    def self.list_locations
      self.all.map do | event|
         event.location
       end.uniq.sort
   end
 
+
+    #location will be = CLI.locations[locations_array_index]
+  def self.fetch_by_location(location)
+    self.all.select {|event| event.location == location}
+  end
 
 
   def self.all
@@ -46,8 +53,6 @@ class Event
   def self.clear
       @@all.clear
   end
-
-
 
 
 

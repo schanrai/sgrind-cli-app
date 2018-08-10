@@ -1,5 +1,7 @@
 class Cli
 
+@@locations_array = []
+
 =begin
 def display_event_index
 Student.all.each do |student|
@@ -19,15 +21,26 @@ def display_event_details
 
 end
 
+def display_events_by_location
+ #use Event.fetch_by_location(location)
+end
 
-def display_event_locations
+=end
+
+def self.display_event_locations
   i = 0
   d = Event.list_locations
-  d.each {|location| puts "#{i += 1}. #{location}"}
+  d.each do|location|
+  @@locations_array << location
+  puts "#{i += 1}. #{location}"
+  end
 end
 
 
-=end
+  def self.locations
+    @@locations_array
+  end
+
 
 
 end
