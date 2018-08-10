@@ -22,12 +22,12 @@ class Scraper
     scraped_details = {}
     doc = Nokogiri::HTML(open(url))
     scraped_details[:long_descrip] = doc.css(".event-description").text.strip
-    scraped_details[:time] = doc.at(".container-inner").children[8].text.strip
+    scraped_details[:start_time] = doc.at(".container-inner .agenda-item strong").text
     scraped_details[:address] = doc.at(".container-inner//span[@itemprop = 'name']").children.text + ", " +
       doc.at(".container-inner//span[@itemprop = 'streetAddress']").children.text + ", " +
       doc.at(".container-inner//span[@itemprop = 'addressLocality']").children.text + ", " +
       doc.at(".container-inner//span[@itemprop = 'postalCode']").children.text
-    scraped_details[:speakers] = doc.css(".carousel-inner").children.css("img").map {|y| y.attribute('alt').value}
+    scraped_details[:speakers] = doc.css(".event-speaker-list//h2[@itemprop = 'name']").map {|y| y.children.text.strip}
     scraped_details
     end
 

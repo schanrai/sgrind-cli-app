@@ -1,5 +1,5 @@
 class Event
-  attr_accessor :name, :event_type, :short_descrip, :location, :location_link, :details_link, :date, :long_descrip, :time, :address, :speakers
+  attr_accessor :name, :event_type, :short_descrip, :location, :location_link, :details_link, :date, :long_descrip, :start_time, :address, :speakers
 
   @@all = []
 
