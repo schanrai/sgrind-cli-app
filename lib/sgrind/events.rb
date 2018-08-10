@@ -25,6 +25,13 @@ class Event
     self
    end
 
+   def self.list_locations
+     self.all.map do | event|
+        event.location
+      end.uniq.sort
+  end
+
+
 
   def self.all
       @@all
@@ -39,5 +46,9 @@ class Event
   def self.clear
       @@all.clear
   end
+
+
+
+
 
 end
