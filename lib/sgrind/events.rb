@@ -18,7 +18,7 @@ class Event
      end
   end
 
-
+ #needs to be called on an event instance and takes in a hash from the scrape_details_page(url) method
    def add_details(scraped_details)
      scraped_details.each do |attr, value|
        self.send("#{attr}=", value)
@@ -38,6 +38,8 @@ class Event
   def self.fetch_by_location(location)
     self.all.select {|event| event.location == location}
   end
+
+  #make fetch event detials_link
 
 
   def self.all
