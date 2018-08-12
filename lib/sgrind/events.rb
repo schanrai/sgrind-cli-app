@@ -46,11 +46,12 @@ class Event
     self.all[event_id].details_link
   end
 
-  #input will be array from fetch_by_location method
-  def self.list_event_details_by_location(filtered_event_array)
-    filter_deets_urls = filtered_event_array.map {| element | element.details_link}
-    c = filter_deets_urls.each { |url| Scraper.scrape_details_page(url) }
-    binding.pry
+  #call this within cli on event instance chosen by user from location mini-menu/array from fetch_by_location method
+  #pass the event instance in as an argument
+  #output will be event instance with additional atttributes from details page
+  def list_event_details_by_location(event)
+    url = event.details_link
+    self.add_details(Scraper.scrape_details_page(url))
   end
 
   def self.all
