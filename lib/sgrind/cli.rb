@@ -27,7 +27,7 @@ def start
       locations_clear
       view_by_location
     when "2"
-      puts "test 2"
+      view_by_all_index
     when "3"
       puts "Goodbye!"
     else
@@ -36,6 +36,13 @@ def start
   end
 end
 
+def view_by_all_index
+  puts "Events happening over the next 6 months:"
+  display_event_index
+  puts ""
+  puts "Enter a number from the numbered list of locations to view details of your selected event:"
+  view_event_details_from_all
+end
 
 def view_by_location
   puts "Events are happening in the following locations:"
@@ -51,26 +58,39 @@ def view_event_by_location
   if (input.to_i >= 1 && input.to_i <= self.locations.size) #why do I need self here? Isn't it obvs we are dealing with the instance?
     location = self.locations[input.to_i - 1]
     result_array = display_events_by_location(location)
-    view_event_details(result_array)
+    view_event_details_from_loc(result_array)
   else puts "Try again mate" #raise typeError if input not an integer - you have to use location_array.size - this doesn't work properly
   end
 end
 
 
-def view_event_details(result) #how to do error correction here for correct for incorrect number that is not in the list
+def view_event_details_from_loc(result) #how to do error correction here for correct for incorrect number that is not in the list
+  puts ""
   puts "Enter a number from the numbered list of events to view details of your selected event:"
   input = gets.chomp
   #if (input.to_i >= 1 && input.to_i <= result.size
   event = result[input.to_i - 1]
-  event_instance = list_event_details_by_location(event)
+  event_instance = list_event_details(event)
   display_event_details(event_instance)
 end
+
+def view_event_details_from_all
+  input = gets.chomp
+  if (input.to_i >= 1 && input.to_i <= Event.all.size)
+    event_instance = Event.all[input.to_i - 1]
+    updated_event = list_event_details(event_instance)
+    display_event_details(updated_event)
+  else puts "Try again mate"
+  end
+end
+
+
 
   #reformatted this and put it in cli class from event - but is that correct?
   #call this within cli on event instance chosen by user from location mini-menu/array from fetch_by_location method
   #pass the event instance in as an argument
   #output will be event instance with additional atttributes from details page
-  def list_event_details_by_location(event)
+  def list_event_details(event)
     url = event.details_link
     event.add_details(Scraper.scrape_details_page(url))
   end
