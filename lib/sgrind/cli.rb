@@ -3,7 +3,38 @@ class Cli
 
 @@locations_array = []
 
-#test all the display methods
+def call
+  a = Scraper.scrape_index_page
+  Event.make_events(a)
+  puts "Welcome to the Startup Grind event listings app!"
+  start
+end
+
+def start
+  input = ""
+  until input == "3"
+  puts ""
+  puts "Please select one of the three options listed below"
+  puts "To view events by location, enter '1'."
+  puts "To view all event listings, enter '2'."
+  puts "To quit, enter '3'."
+  puts "What would you like to do?"
+  input = gets.chomp
+    case input
+    when "1"
+      puts "test 1"
+    when "2"
+      puts "test 2"
+    when "3"
+      puts "Goodbye!"
+    else
+      puts "I do not understand - please type '1', '2' or '3' only."
+    end
+  end
+end
+
+
+#all the display methods
 def display_event_index
   i = 0
   puts "************* All Events *************"

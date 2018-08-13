@@ -5,3 +5,4 @@
 require_relative '../lib/sgrind'
 
 #call to CLI
+Cli.new.call
