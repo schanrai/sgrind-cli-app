@@ -34,8 +34,14 @@ end
 
 
 #location mini-menu
-def display_events_by_location
+def display_events_by_location(location)
  #use Event.fetch_by_location(location)
+ y = 0
+ d = Event.fetch_by_location(location)
+ puts "************* Events In Your Location *************" #lazy but too hungover and short on time to do the string interpolation thingy
+ d.each do| event |
+ puts "#{y += 1}. #{event.name}"
+ end
 end
 
 

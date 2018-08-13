@@ -54,6 +54,7 @@ class Event
     self.add_details(Scraper.scrape_details_page(url))
   end
 
+
   def self.all
       @@all
   end
