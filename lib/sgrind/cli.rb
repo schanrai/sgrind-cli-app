@@ -24,12 +24,11 @@ def start
   input = gets.chomp
     case input
     when "1"
+      locations_clear
       view_by_location
     when "2"
       puts "test 2"
     when "3"
-      @@locations_array.clear
-      Event.clear
       puts "Goodbye!"
     else
       puts "I do not understand - please type '1', '2' or '3' only."
@@ -39,9 +38,10 @@ end
 
 
 def view_by_location
-  puts "Events are happening in the following locations"
+  puts "Events are happening in the following locations:"
   display_event_locations
-  puts 'Enter a number from the numbered list of locations to view events in that city'
+  puts ""
+  puts 'Enter a number from the numbered list of locations to view events in that city:'
   view_event_by_location
 end
 
@@ -50,11 +50,30 @@ def view_event_by_location
   input = gets.chomp
   if (input.to_i >= 1 && input.to_i <= self.locations.size) #why do I need self here? Isn't it obvs we are dealing with the instance?
     location = self.locations[input.to_i - 1]
-    display_events_by_location(location)
+    result_array = display_events_by_location(location)
+    view_event_details(result_array)
   else puts "Try again mate" #raise typeError if input not an integer - you have to use location_array.size - this doesn't work properly
   end
-    #
 end
+
+
+def view_event_details(result) #how to do error correction here for correct for incorrect number that is not in the list
+  puts "Enter a number from the numbered list of events to view details of your selected event:"
+  input = gets.chomp
+  #if (input.to_i >= 1 && input.to_i <= result.size
+  event = result[input.to_i - 1]
+  event_instance = list_event_details_by_location(event)
+  display_event_details(event_instance)
+end
+
+  #reformatted this and put it in cli class from event - but is that correct?
+  #call this within cli on event instance chosen by user from location mini-menu/array from fetch_by_location method
+  #pass the event instance in as an argument
+  #output will be event instance with additional atttributes from details page
+  def list_event_details_by_location(event)
+    url = event.details_link
+    event.add_details(Scraper.scrape_details_page(url))
+  end
 
 
 #all the display methods
@@ -121,6 +140,9 @@ end
     @@locations_array
   end
 
+  def locations_clear
+    @@locations_array.clear
+  end
 
 
 
