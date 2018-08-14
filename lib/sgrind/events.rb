@@ -50,7 +50,7 @@ class Event
   #call this within cli on event instance chosen by user from location mini-menu/array from fetch_by_location method
   #pass the event instance in as an argument
   #output will be event instance with additional atttributes from details page
-  def list_event_details
+  def get_event_details
     url = self.details_link
     self.add_details(Scraper.scrape_details_page(url))
   end
@@ -63,9 +63,6 @@ class Event
   def save
     @@all << self
   end
-
-
-
 
 
 end

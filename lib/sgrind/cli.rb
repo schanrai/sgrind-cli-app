@@ -4,7 +4,6 @@ class Cli
 @@locations_array = []
 
 def call
-  #combine two methods below?
   a = Scraper.scrape_index_page
   Event.make_events(a)
   puts "Welcome to the Startup Grind event listings app!"
@@ -59,7 +58,7 @@ def view_event_by_location
     location = self.locations[input.to_i - 1]
     result_array = display_events_by_location(location)
     view_event_details_from_loc(result_array)
-  else puts "Try again mate" #raise typeError if input not an integer - you have to use location_array.size - this doesn't work properly
+  else puts "Invalid input, please choose a number from the list of locations:" #raise typeError if input not an integer - you have to use location_array.size - this doesn't work properly
   end
 end
 
@@ -70,20 +69,19 @@ def view_event_details_from_loc(result) #how to do error correction here for cor
   input = gets.chomp
   if input.to_i >= 1 && input.to_i <= result.size
     z = result[input.to_i - 1]
-    event_instance = z.list_event_details
-    display_event_details(event_instance)
+    display_event_details(z.get_event_details)
   else
-    puts "Invalid input, please select a number from the list of events."
+    puts "Invalid input, please choose a number from the list of events:"
   end
 end
+
 
 def view_event_details_from_all
   input = gets.chomp
   if (input.to_i >= 1 && input.to_i <= Event.all.size)
-    event_instance = Event.all[input.to_i - 1]
-    updated_event = list_event_details(event_instance)
-    display_event_details(updated_event)
-  else puts "That is not a valid input. Please select a number fron the list of events"
+    y = Event.all[input.to_i - 1]
+    display_event_details(y.get_event_details)
+  else puts "That is not a valid input. Please choose a number from the list of events:"
   end
 end
 
@@ -103,7 +101,6 @@ end
 
 
 #this needs to take in argument of event object, will come from the event.all[index_number]
-#speakers turning from string to array line 18 is untested
 def display_event_details(event)
     x = event.speakers * ", "
     puts ""
@@ -121,10 +118,8 @@ def display_event_details(event)
 end
 
 
-
 #location mini-menu
 def display_events_by_location(location)
- #use Event.fetch_by_location(location)
  y = 0
  d = Event.fetch_by_location(location)
  puts ""
