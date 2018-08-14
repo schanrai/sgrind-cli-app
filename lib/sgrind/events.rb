@@ -41,7 +41,7 @@ class Event
   end
 
 
-  #fetches event details_link by event id - do you need this? 
+  #fetches event details_link by event id - do you need this?
   def self.fetch_details_url(event_id)
     self.all[event_id].details_link
   end
@@ -66,9 +66,6 @@ class Event
   end
 
 
-  def self.clear
-      @@all.clear
-  end
 
 
 

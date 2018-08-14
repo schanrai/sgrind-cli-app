@@ -68,10 +68,13 @@ def view_event_details_from_loc(result) #how to do error correction here for cor
   puts ""
   puts "Enter a number from the numbered list of events to view details of your selected event:"
   input = gets.chomp
-  #if (input.to_i >= 1 && input.to_i <= result.size
-  event = result[input.to_i - 1]
-  event_instance = list_event_details(event)
-  display_event_details(event_instance)
+  if input.to_i >= 1 && input.to_i <= result.size
+    event = result[input.to_i - 1]
+    event_instance = list_event_details(event)
+    display_event_details(event_instance)
+  else
+    puts "Invalid input, please select a number from the list of events."
+  end
 end
 
 def view_event_details_from_all
@@ -80,7 +83,7 @@ def view_event_details_from_all
     event_instance = Event.all[input.to_i - 1]
     updated_event = list_event_details(event_instance)
     display_event_details(updated_event)
-  else puts "Try again mate"
+  else puts "That is not a valid input. Please select a number fron the list of events"
   end
 end
 
