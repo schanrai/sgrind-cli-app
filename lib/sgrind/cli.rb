@@ -35,6 +35,7 @@ def start
   end
 end
 
+
 def view_by_all_index
   puts "Events happening over the next 6 months:"
   display_event_index
@@ -42,6 +43,7 @@ def view_by_all_index
   puts "Enter a number from the numbered list of locations to view details of your selected event:"
   view_event_details_from_all
 end
+
 
 def view_by_location
   puts "Events are happening in the following locations:"
@@ -58,12 +60,12 @@ def view_event_by_location
     location = self.locations[input.to_i - 1]
     result_array = display_events_by_location(location)
     view_event_details_from_loc(result_array)
-  else puts "Invalid input, please choose a number from the list of locations:" #raise typeError if input not an integer - you have to use location_array.size - this doesn't work properly
+  else puts "Invalid input, please choose a number from the list of locations:"
   end
 end
 
 
-def view_event_details_from_loc(result) #how to do error correction here for correct for incorrect number that is not in the list
+def view_event_details_from_loc(result)
   puts ""
   puts "Enter a number from the numbered list of events to view details of your selected event:"
   input = gets.chomp
@@ -123,7 +125,7 @@ def display_events_by_location(location)
  y = 0
  d = Event.fetch_by_location(location)
  puts ""
- puts "************* Events In Your Location *************" #lazy but too hungover and short on time to do the string interpolation thingy
+ puts "************* Events In Your Location *************"
  d.each do| event |
  puts "#{y += 1}. #{event.name}"
  end

@@ -12,13 +12,11 @@ class Scraper
     :details_link => events.css("a")[1].attribute("href").value,
     :date => events.css(".date").text.split("- ")[0].strip}
     end
-    #puts "#{scraped_index}"
     scraped_index
   end
 
   #will take in the argument of a details_link from Event.fetch_details_url(event_id)
   def self.scrape_details_page(url)
-    #url_1 ="https://www.startupgrind.com/events/details/startup-grind-san-francisco-presents-ryan-popple-proterra#/"
     scraped_details = {}
     doc = Nokogiri::HTML(open(url))
     scraped_details[:long_descrip] = doc.css(".event-description").text.strip
