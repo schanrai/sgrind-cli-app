@@ -1,9 +1,8 @@
 # Sgrind
 
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sgrind`. To experiment with that code, run `bin/console` for an interactive prompt.
+The Sgrind CLI gem is a command line interface tool that retrieves detailed information about events from the Startup Grind website (https://www.startupgrind.com/events/). This gem will facilitate easy retrieval of information about future events, and gives the user the ability to view aggregated lists of events scheduled for the next 6 months. The user will also be able to  browse and view all event locations and drill down to events by city.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -23,15 +22,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Once installed, the lines below will run the gem:
 
-Will do this at the end 
+
+    $ ruby bin/sgrind
+
+On starting, the user will be be given the option to browse events by title or by location.
+
+If they choose to view events by location, they will need to select a location from a menu of global event destination that is dynamically scraped from the site, then choose an event from another menu of all events in that location. The event details for the selected item will then be returned.
+
+If they choose to view all events by their title, they will need to select an event from a menu of all events over the next 6 months happening globally (location is appended to the event title in the menu for convenience). The event details for the selected item will then be returned. The user will have to option to search for another item or end the program.
+
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
 
 ## Contributing
 
