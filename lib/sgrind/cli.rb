@@ -69,8 +69,8 @@ def view_event_details_from_loc(result) #how to do error correction here for cor
   puts "Enter a number from the numbered list of events to view details of your selected event:"
   input = gets.chomp
   if input.to_i >= 1 && input.to_i <= result.size
-    event = result[input.to_i - 1]
-    event_instance = list_event_details(event)
+    z = result[input.to_i - 1]
+    event_instance = z.list_event_details
     display_event_details(event_instance)
   else
     puts "Invalid input, please select a number from the list of events."
@@ -87,16 +87,6 @@ def view_event_details_from_all
   end
 end
 
-
-
-  #reformatted this and put it in cli class from event - but is that correct?
-  #call this within cli on event instance chosen by user from location mini-menu/array from fetch_by_location method
-  #pass the event instance in as an argument
-  #output will be event instance with additional atttributes from details page
-  def list_event_details(event)
-    url = event.details_link
-    event.add_details(Scraper.scrape_details_page(url))
-  end
 
 
 #all the display methods
