@@ -4,8 +4,7 @@ class Cli
 @@locations_array = []
 
 def call
-  a = Scraper.scrape_index_page
-  Event.make_events(a)
+  Event.make_events(Scraper.scrape_index_page)
   puts "Welcome to the Startup Grind event listings app!"
   start
 end
