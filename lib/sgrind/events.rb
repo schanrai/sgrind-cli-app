@@ -52,8 +52,8 @@ class Event
     if self.long_descrip
       return self
     else
-    url = self.details_link
-    self.add_details(Scraper.scrape_details_page(url))
+      puts "scraping details page"
+    self.add_details(Scraper.scrape_details_page(self.details_link))
     end
   end
 
