@@ -39,7 +39,7 @@ class Event
   end
 
 
-  #fetches event details_link by event id 
+  #fetches event details_link by event id
   def self.fetch_details_url(event_id)
     self.all[event_id].details_link
   end
@@ -49,8 +49,12 @@ class Event
   #pass the event instance in as an argument
   #output will be event instance with additional atttributes from details page
   def get_event_details
+    if self.long_descrip
+      return self
+    else
     url = self.details_link
     self.add_details(Scraper.scrape_details_page(url))
+    end
   end
 
 
