@@ -1,8 +1,6 @@
 class Cli
 
 
-@@locations_array = []
-
 def call
   Event.make_events(Scraper.scrape_index_page)
   puts "Welcome to the Startup Grind event listings app!"
@@ -22,7 +20,6 @@ def start
   input = gets.chomp
     case input
     when "1"
-      locations_clear
       view_by_location
     when "2"
       view_by_all_index
@@ -55,8 +52,8 @@ end
 
 def view_event_by_location
   input = gets.chomp
-  if (input.to_i >= 1 && input.to_i <= self.locations.size) #why do I need self here? Isn't it obvs we are dealing with the instance?
-    location = self.locations[input.to_i - 1]
+  if (input.to_i >= 1 && input.to_i <= Event.list_locations.size)
+    location = Event.list_locations[input.to_i - 1]
     result_array = display_events_by_location(location)
     view_event_details_from_loc(result_array)
   else puts "Invalid input, please choose a number from the list of locations:"
@@ -138,21 +135,9 @@ def display_event_locations
   puts ""
   puts "************* Event Locations *************"
   d.each do|location|
-  @@locations_array << location #you need this for fetch_by_location
   puts "#{i += 1}. #{location}"
   end
 end
-
-
-#you need this for fetch_by_location
-  def locations
-    @@locations_array
-  end
-
-  def locations_clear
-    @@locations_array.clear
-  end
-
 
 
 end

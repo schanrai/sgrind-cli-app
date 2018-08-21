@@ -52,7 +52,6 @@ class Event
     if self.long_descrip
       return self
     else
-      puts "scraping details page"
     self.add_details(Scraper.scrape_details_page(self.details_link))
     end
   end
